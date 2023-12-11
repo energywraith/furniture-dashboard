@@ -8,7 +8,7 @@ import { DropdownMenu } from "../DropdownMenu";
 
 const Header = () => {
   return (
-    <header className="px-6 pb-1.5 md:pb-0 border-b border-secondary-200">
+    <header className="pb-1.5 md:pb-0 border-b border-secondary-200">
       <div className="container grid grid-cols-[40px_auto_auto_auto] gap-x-4 md:gap-x-5 gap-y-1.5 items-center py-1.5 md:py-4 md:flex">
         <HeaderMenu className="row-start-2" />
         <Brand className="row-start-1 col-span-3" />

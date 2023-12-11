@@ -1,0 +1,11 @@
+.swiper-horizontal {
+  margin: 0;
+}
+
+.swiper, .swiper-wrapper {
+  overflow: visible;
+}
+
+.swiper .swiper-slide {
+  width: auto;
+}

@@ -153,6 +153,8 @@ const config: Config = {
         ".container": {
           maxWidth: "100%",
           margin: "auto",
+          paddingLeft: "1.5rem",
+          paddingRight: "1.5rem",
           "@screen md": {
             maxWidth: "1248px",
           },
