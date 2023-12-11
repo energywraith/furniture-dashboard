@@ -11,26 +11,20 @@ interface ITab {
   notificationCount: number;
 }
 
-interface TabProps extends ITab {
-  onPathChange: (ref: RefObject<HTMLAnchorElement>) => void;
-}
+interface TabProps extends ITab {}
 
-const Tab = ({ path, label, notificationCount, onPathChange }: TabProps) => {
+const Tab = ({ path, label, notificationCount }: TabProps) => {
   const ref = useRef(null);
   const pathname = usePathname();
-
-  useEffect(() => {
-    if (pathname === path) {
-      onPathChange(ref);
-    }
-  }, [path, pathname, onPathChange]);
 
   return (
     <Link
       ref={ref}
       href={path}
-      className={`mt-6 text-body-m font-medium pt-2 pb-4 hover:text-gray-700 border-b border-transparent hover:border-gray-700 ${
-        pathname === path ? "active text-info-600" : "text-gray-50"
+      className={`block mt-6 text-body-m font-medium pt-2 pb-4 ${
+        pathname === path
+          ? "active text-info-600 border-b-2 border-info-600"
+          : "text-gray-50 border-b border-transparent hover:text-gray-700 hover:border-gray-700"
       }`}
     >
       <li className="flex">
