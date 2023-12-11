@@ -42,7 +42,7 @@ const Input = ({ type, placeholder, disabled, classes, Icon }: InputProps) => {
         disabled={disabled}
         onInput={onInput}
       />
-      <div className="absolute inset-y-0 right-0 flex pr-4 divide-x py-2 text-neutral-900 peer-focus:text-base-black peer-disabled:text-neutral-800">
+      <div className="absolute inset-y-0 right-0 flex pr-4 divide-x divide-neutral-900 py-2 text-neutral-900 peer-hover:divide-neutral-950 peer-focus:text-base-black peer-focus:divide-base-black peer-disabled:text-neutral-800 peer-disabled:divide-neutral-800">
         {hasContent && (
           <button
             onClick={onClearContent}
