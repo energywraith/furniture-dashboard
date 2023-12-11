@@ -4,6 +4,7 @@ import "./globals.css";
 
 import { Header } from "@/components/templates/Header";
 import { Tabs } from "@/components/templates/Tabs";
+import { Footer } from "@/components/templates/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -61,6 +62,7 @@ export default function RootLayout({
         <Header />
         <Tabs tabs={tabs} />
         {children}
+        <Footer />
       </body>
     </html>
   );
