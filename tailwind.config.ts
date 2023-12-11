@@ -155,6 +155,7 @@ const config: Config = {
           margin: "auto",
           paddingLeft: "1.5rem",
           paddingRight: "1.5rem",
+          width: "100%",
           "@screen md": {
             maxWidth: "1248px",
           },
