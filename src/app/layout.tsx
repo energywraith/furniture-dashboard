@@ -58,7 +58,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body
+        className={`${inter.className} grid grid-rows-[auto_auto_1fr_auto] min-h-screen`}
+      >
         <Header />
         <Tabs tabs={tabs} />
         {children}
