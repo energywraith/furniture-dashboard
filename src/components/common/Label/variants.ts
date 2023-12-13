@@ -1,35 +1,35 @@
 const variants = {
   neutral: {
-    bg: "neutral-300",
-    text: "gray-700",
+    box: "bg-neutral-300 text-gray-700",
+    circle: "bg-gray-700",
   },
   "neutral-light": {
-    bg: "neutral-700",
-    text: "base-white",
+    box: "bg-neutral-700 text-base-white",
+    circle: "bg-base-white",
   },
   "info-light": {
-    bg: "info-25",
-    text: "info-600",
+    box: "bg-info-25 text-info-600",
+    circle: "bg-info-600",
   },
   "info-dark": {
-    bg: "info-500",
-    text: "base-white",
+    box: "bg-info-500 text-base-white",
+    circle: "bg-base-white",
   },
   success: {
-    bg: "success-50",
-    text: "success-700",
+    box: "bg-success-50 text-success-700",
+    circle: "bg-success-700",
   },
   warning: {
-    bg: "warning-50",
-    text: "warning-700",
+    box: "bg-warning-50 text-warning-700",
+    circle: "bg-warning-700",
   },
   error: {
-    bg: "error-100",
-    text: "error-600",
+    box: "bg-error-100 text-error-600",
+    circle: "bg-error-600",
   },
   purple: {
-    bg: "purple-50",
-    text: "purple-600",
+    box: "bg-purple-50 text-purple-600",
+    circle: "bg-purple-600",
   },
 };
 

@@ -6,16 +6,15 @@ interface LabelProps extends HTMLProps<HTMLDivElement> {
 }
 
 const Label = ({ variant = "neutral", className, children }: LabelProps) => {
-  const boxClasses = `bg-${variants[variant].bg} text-${variants[variant].text}`;
-  const circleClasses = `bg-${variants[variant].text}`;
-
   return (
     <div
-      className={`flex items-center justify-center gap-x-1 text-body-xs font-medium py-0.5 px-2 w-fit rounded-[4px] ${boxClasses} ${
-        className || ""
-      }`}
+      className={`flex items-center justify-center gap-x-1 text-body-xs font-medium py-0.5 px-2 w-fit rounded-[4px] ${
+        variants[variant]?.box
+      } ${className || ""}`}
     >
-      <div className={`w-1.5 h-1.5 rounded-full ${circleClasses}`}></div>
+      <div
+        className={`w-1.5 h-1.5 rounded-full ${variants[variant]?.circle}`}
+      ></div>
       {children}
     </div>
   );
