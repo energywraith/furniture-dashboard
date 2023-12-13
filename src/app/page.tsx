@@ -1,10 +1,23 @@
 import { Button } from "@/components/common/Button";
-import { BellIcon } from "@/components/icons";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { ShareIcon } from "@/components/icons/ShareIcon";
+import { Chart } from "@/components/templates/Chart";
 import { Page } from "@/components/templates/Page";
+import { getDailySales } from "./lib/getDailySales";
 
-export default function Home() {
+async function getData() {
+  const dailySales = await getDailySales({
+    clientId: 18,
+    startDate: "2023-12-05T00:00:00.000Z",
+    endDate: "2023-12-12T00:00:00.000Z",
+  });
+
+  return { dailySales };
+}
+
+export default async function Home() {
+  const { dailySales } = await getData();
+
   return (
     <Page>
       <section className="flex flex-col md:flex-row gap-y-8 justify-between items-start">
@@ -22,6 +35,12 @@ export default function Home() {
           <Button LeftAttachmentIcon={DownloadIcon}>Eksportuj</Button>
         </div>
       </section>
+      <Chart
+        data={dailySales}
+        className="mt-6 h-[375px]"
+        index="day"
+        categories={["Ilość produktów"]}
+      />
     </Page>
   );
 }
