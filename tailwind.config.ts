@@ -40,6 +40,9 @@ const config: Config = {
           white: "#FFFFFF",
           black: "#000000",
         },
+        blue: {
+          500: "#3694EB",
+        },
         primary: {
           300: "#386876",
           400: "#1F5565",
@@ -152,14 +155,14 @@ const config: Config = {
             faint: "#eff6ff", // blue-50
             muted: "#bfdbfe", // blue-200
             subtle: "#60a5fa", // blue-400
-            DEFAULT: "#3b82f6", // blue-500
+            DEFAULT: "#3694EB", // blue-500
             emphasis: "#1d4ed8", // blue-700
             inverted: "#ffffff", // white
           },
           background: {
             muted: "#f9fafb", // gray-50
             subtle: "#f3f4f6", // gray-100
-            DEFAULT: "#ffffff", // white
+            DEFAULT: "#3694EB", // white
             emphasis: "#374151", // gray-700
           },
           border: {
