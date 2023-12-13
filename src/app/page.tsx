@@ -4,6 +4,7 @@ import { ShareIcon } from "@/components/icons/ShareIcon";
 import { Chart } from "@/components/templates/Chart";
 import { Page } from "@/components/templates/Page";
 import { getDailySales } from "./lib/getDailySales";
+import { Select } from "@/components/form/Select";
 
 async function getData() {
   const dailySales = await getDailySales({
@@ -35,6 +36,10 @@ export default async function Home() {
           <Button LeftAttachmentIcon={DownloadIcon}>Eksportuj</Button>
         </div>
       </section>
+      <div className="mt-6 flex gap-x-3">
+        <Select />
+        <Select />
+      </div>
       <Chart
         data={dailySales}
         className="mt-6 h-[375px]"
