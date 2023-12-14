@@ -241,6 +241,7 @@ const config: Config = {
   ],
   plugins: [
     require("@headlessui/tailwindcss"),
+    // @ts-ignore
     function ({ addComponents }) {
       addComponents({
         ".container": {
