@@ -22,7 +22,7 @@ const DailySaleChart = ({
 
   const selectedClient = useMemo(
     () => clients.find((client) => client.id === selectedClientId),
-    [selectedClientId]
+    [clients, selectedClientId]
   );
 
   const { dailySales, isLoading: isInitialDailySalesLoading } = useDailySales({
