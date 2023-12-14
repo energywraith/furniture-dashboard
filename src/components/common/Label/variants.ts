@@ -33,4 +33,10 @@ const variants = {
   },
 };
 
-export { variants };
+const getRandomLabelVariant = () => {
+  const keys = Object.keys(variants);
+  const randomKey = keys[(keys.length * Math.random()) << 0];
+  return randomKey as keyof typeof variants;
+};
+
+export { variants, getRandomLabelVariant };

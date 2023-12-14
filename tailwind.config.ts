@@ -14,7 +14,6 @@ const config: Config = {
       md: "1024px",
       xl: "1601px",
     },
-
     fontSize: {
       "display-l": ["4rem", { lineHeight: "4.25rem" }],
       "display-m": ["3.25rem", { lineHeight: "4rem" }],
@@ -182,6 +181,7 @@ const config: Config = {
       },
       boxShadow: {
         // light
+        xs: "0 1px 2px 0 #1018280A",
         "tremor-input": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
         "tremor-card":
           "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",

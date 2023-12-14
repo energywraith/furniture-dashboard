@@ -1,4 +1,4 @@
-import { HTMLProps, ReactNode } from "react";
+import { HTMLProps } from "react";
 import { variants } from "./variants";
 
 interface LabelProps extends HTMLProps<HTMLDivElement> {
