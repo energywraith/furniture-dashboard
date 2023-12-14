@@ -161,7 +161,7 @@ const config: Config = {
           background: {
             muted: "#f9fafb", // gray-50
             subtle: "#f3f4f6", // gray-100
-            DEFAULT: "#3694EB", // white
+            DEFAULT: "#fff", // white
             emphasis: "#374151", // gray-700
           },
           border: {

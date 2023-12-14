@@ -4,14 +4,17 @@ import { getTopOrderedClients } from "./lib/getTopOrderedClients";
 import { Button } from "@/components/common/Button";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { ShareIcon } from "@/components/icons/ShareIcon";
-import { Chart } from "@/components/templates/Chart";
 import { Page } from "@/components/templates/Page";
 import { ClientsTable } from "@/components/dashboard/ClientsTable";
 import { ProductsTable } from "@/components/dashboard/ProductsTable";
+import { getClients } from "./lib/getClients";
+import { DailySaleChart } from "@/components/dashboard/DailySaleChart";
 
 async function getData() {
+  const clients = await getClients();
+
   const dailySales = await getDailySales({
-    clientId: 18,
+    client: clients[0],
     startDate: "2023-12-05T00:00:00.000Z",
     endDate: "2023-12-12T00:00:00.000Z",
   });
@@ -19,11 +22,12 @@ async function getData() {
   const topOrderedProducts = await getTopOrderedProducts();
   const topOrderedClients = await getTopOrderedClients();
 
-  return { dailySales, topOrderedProducts, topOrderedClients };
+  return { clients, dailySales, topOrderedProducts, topOrderedClients };
 }
 
 export default async function Home() {
-  const { dailySales, topOrderedProducts, topOrderedClients } = await getData();
+  const { clients, dailySales, topOrderedProducts, topOrderedClients } =
+    await getData();
 
   return (
     <Page>
@@ -42,12 +46,7 @@ export default async function Home() {
           <Button LeftAttachmentIcon={DownloadIcon}>Eksportuj</Button>
         </div>
       </section>
-      <Chart
-        data={dailySales}
-        className="mt-6 h-[375px]"
-        index="day"
-        categories={["Ilość produktów"]}
-      />
+      <DailySaleChart initialDailySales={dailySales} clients={clients} />
       <div className="flex flex-col gap-x-6 mt-20 gap-y-16 md:grid md:grid-cols-[60%_1fr]">
         <ProductsTable products={topOrderedProducts} />
         <ClientsTable clients={topOrderedClients} />
