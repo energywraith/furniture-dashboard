@@ -6,3 +6,5 @@ export * from "./HamburgerIcon";
 export * from "./SearchIcon";
 export * from "./BellIcon";
 export * from "./UserIcon";
+export * from "./MoreIcon";
+export * from "./ArrowIcon";
