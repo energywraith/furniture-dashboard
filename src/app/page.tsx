@@ -1,10 +1,12 @@
 import { getDailySales } from "./lib/getDailySales";
 import { getTopOrderedProducts } from "./lib/getTopOrderedProducts";
+import { getTopOrderedClients } from "./lib/getTopOrderedClients";
 import { Button } from "@/components/common/Button";
 import { DownloadIcon } from "@/components/icons/DownloadIcon";
 import { ShareIcon } from "@/components/icons/ShareIcon";
 import { Chart } from "@/components/templates/Chart";
 import { Page } from "@/components/templates/Page";
+import { ClientsTable } from "@/components/dashboard/ClientsTable";
 import { ProductsTable } from "@/components/dashboard/ProductsTable";
 
 async function getData() {
@@ -15,12 +17,13 @@ async function getData() {
   });
 
   const topOrderedProducts = await getTopOrderedProducts();
+  const topOrderedClients = await getTopOrderedClients();
 
-  return { dailySales, topOrderedProducts };
+  return { dailySales, topOrderedProducts, topOrderedClients };
 }
 
 export default async function Home() {
-  const { dailySales, topOrderedProducts } = await getData();
+  const { dailySales, topOrderedProducts, topOrderedClients } = await getData();
 
   return (
     <Page>
@@ -47,6 +50,7 @@ export default async function Home() {
       />
       <div className="flex flex-col gap-x-6 mt-20 gap-y-16 md:grid md:grid-cols-[60%_1fr]">
         <ProductsTable products={topOrderedProducts} />
+        <ClientsTable clients={topOrderedClients} />
       </div>
     </Page>
   );
