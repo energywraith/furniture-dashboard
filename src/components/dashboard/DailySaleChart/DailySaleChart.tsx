@@ -2,7 +2,7 @@
 
 import { Chart } from "@/components/templates/Chart";
 import { Select } from "@/components/form/Select";
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { AreaChartProps } from "@tremor/react";
 import { useDailySales } from "./useDailySales";
 
@@ -46,7 +46,7 @@ const DailySaleChart = ({
       </div>
       <Chart
         data={dailySales}
-        className="mt-6 h-[375px]"
+        className="mt-6 h-[385px] md:h-[375px]"
         index="day"
         categories={["Ilość produktów"]}
       />

@@ -47,7 +47,7 @@ export default async function Home() {
         </div>
       </section>
       <DailySaleChart initialDailySales={dailySales} clients={clients} />
-      <div className="flex flex-col gap-x-6 mt-20 gap-y-16 md:grid md:grid-cols-[60%_1fr]">
+      <div className="flex flex-col gap-x-6 mt-14 md:mt-16 md:pt-2 gap-y-16 md:grid md:grid-cols-[66%_1fr] xl:grid-cols-[57.5%_1fr]">
         <ProductsTable products={topOrderedProducts} />
         <ClientsTable clients={topOrderedClients} />
       </div>

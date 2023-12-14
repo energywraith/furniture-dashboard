@@ -36,21 +36,24 @@ const TablePagination = ({
   );
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-between text-gray-50">
       <button
-        className={"px-6 flex gap-x-1.5 items-center"}
+        className={`
+          "px-1 md:px-6 flex gap-x-1.5 items-center hover:text-gray-700 ${
+            isCompact ? "px-6" : "px-1"
+          }`}
         onClick={onPrevPage}
       >
         <ArrowIcon direction="left" className="w-4 h-4" />
         <span className={isCompact ? "hidden xl:block" : ""}>Wróć</span>
       </button>
-      <ul className="flex text-body-s font-medium text-gray-50">
+      <ul className="flex text-body-s font-medium">
         {pagesToRender.map((page, index) => {
           return (
             <li key={`${page}${index}`} className="w-10 h-10">
               <button
                 className={`w-full h-full ${
-                  page === currentPage ? "text-info-600" : ""
+                  page === currentPage ? "text-info-600" : "hover:text-gray-700"
                 }`}
                 onClick={() => onPage(page)}
               >
@@ -61,7 +64,9 @@ const TablePagination = ({
         })}
       </ul>
       <button
-        className={"px-6 flex gap-x-1.5 items-center"}
+        className={`px-1 md:px-6 flex gap-x-1.5 items-center hover:text-gray-700 ${
+          isCompact ? "px-6" : "px-1"
+        }`}
         onClick={onNextPage}
       >
         <span className={isCompact ? "hidden xl:block" : ""}>Dalej</span>

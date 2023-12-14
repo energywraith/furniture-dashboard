@@ -7,7 +7,7 @@ export const columns = {
     label: "Produkt",
     renderComponent: (value: string | number) => {
       return (
-        <div className="flex items-center py-1 gap-x-4 text-gray-700">
+        <div className="flex items-center py-[0.84rem] md:py-[0.2rem] gap-x-4 text-gray-700">
           <Image
             src="/product-placeholder-40x40.jpg"
             width={40}

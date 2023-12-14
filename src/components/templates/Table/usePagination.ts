@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Row } from "./types";
 
 const usePagination = (data: Row[], volume: number = 5) => {

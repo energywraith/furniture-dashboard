@@ -252,6 +252,8 @@ const config: Config = {
           width: "100%",
           "@screen md": {
             maxWidth: "1248px",
+            paddingLeft: 0,
+            paddingRight: 0,
           },
           "@screen xl": {
             maxWidth: "1409px",

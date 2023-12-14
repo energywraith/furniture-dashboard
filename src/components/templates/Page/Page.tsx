@@ -6,7 +6,7 @@ interface PageProps {
 
 const Page = ({ children }: PageProps) => {
   return (
-    <main className="container h-full pt-7 pb-16 md:pt-10 md:pb-20">
+    <main className="container h-full pt-7 pb-16 md:pt-9 md:pb-20">
       {children}
     </main>
   );
