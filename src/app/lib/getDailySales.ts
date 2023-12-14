@@ -1,43 +1,49 @@
+"use server";
+
 interface DailySaleRecord {
-  clientId: number;
+  clientId: string;
   quantity: number;
   createdDate: string;
 }
 
 interface GetDailySalesProps {
-  clientId: number;
+  client: {
+    id: string;
+    name: string;
+  };
   startDate: string;
   endDate: string;
 }
 
-const parseDailySales = (dailySales: DailySaleRecord[]) =>
+const parseDailySales = (dailySales: DailySaleRecord[], clientName: string) =>
   dailySales.map((record) => {
     const createdDate = new Date(record.createdDate);
     const day = createdDate
-      .toLocaleDateString("en-US", { day: "2-digit", month: "2-digit" })
+      .toLocaleDateString("en-GB", { day: "2-digit", month: "2-digit" })
       .replace(/\//g, ".");
 
     return {
       day,
       clientId: record.clientId,
-      label: "ETNO Meble",
+      label: clientName,
       "Ilość produktów": record.quantity,
     };
   });
 
 export const getDailySales = async ({
-  clientId,
+  client,
   startDate,
   endDate,
 }: GetDailySalesProps) => {
   try {
     const response = await fetch(
-      `https://api-test.eltap.com/api/v1/Analytics/daily-order-data?clientId=${clientId}&startDate=${startDate}&endDate=${endDate}`
+      `https://api-test.eltap.com/api/v1/Analytics/daily-order-data?clientId=${client.id}&startDate=${startDate}&endDate=${endDate}`
     );
 
     if (response.ok) {
       const responseJSON: DailySaleRecord[] = await response.json();
-      return parseDailySales(responseJSON);
+
+      return parseDailySales(responseJSON, client.name);
     }
 
     throw "Daily sales for such parameters does not exist.";
