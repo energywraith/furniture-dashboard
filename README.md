@@ -2,7 +2,7 @@
 Internal page for an admin application that manages a segment of furniture distributors.
 
 ## Deployment
-This application is deployed on Vercel. You can access the live deployment [here](furniture-dashboard-three.vercel.app).
+This application is deployed on Vercel. You can access the live deployment [here](https://furniture-dashboard-three.vercel.app/).
 
 ## Created with Figma
 The design for this application was created using Figma. You can access the design mock-ups and UI elements used for this project [here](https://www.figma.com/file/k4Cm4wB9IgGGO0Q7KvfpPm/Zadanie-testowe-%7C-Front-end-Developer?type=design&node-id=169%3A7681&mode=design&t=DlNcOkZ61eEPwSbf-1).
