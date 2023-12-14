@@ -15,8 +15,8 @@ async function getData() {
 
   const dailySales = await getDailySales({
     client: clients[0],
-    startDate: "2023-12-05T00:00:00.000Z",
-    endDate: "2023-12-12T00:00:00.000Z",
+    startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toUTCString(),
+    endDate: new Date(Date.now()).toUTCString(),
   });
 
   const topOrderedProducts = await getTopOrderedProducts();
