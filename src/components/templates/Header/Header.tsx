@@ -4,7 +4,7 @@ import { Brand } from "@/components/common/Brand";
 import { HeaderMenu } from "./HeaderMenu";
 import { Input } from "@/components/form/Input";
 import { BellIcon, SearchIcon, UserIcon } from "@/components/icons";
-import { DropdownMenu } from "../DropdownMenu";
+import { TooltipMenu } from "@/components/templates/TooltipMenu";
 
 const Header = () => {
   return (
@@ -21,8 +21,8 @@ const Header = () => {
           }}
         />
         <div className="row-start-1 justify-self-end flex">
-          <DropdownMenu Icon={BellIcon} tooltipText="Powiadomienia" />
-          <DropdownMenu Icon={UserIcon} tooltipText="Moje konto" />
+          <TooltipMenu Icon={BellIcon} tooltipText="Powiadomienia" />
+          <TooltipMenu Icon={UserIcon} tooltipText="Moje konto" />
         </div>
       </div>
     </header>
