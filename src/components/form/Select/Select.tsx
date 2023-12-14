@@ -1,44 +1,24 @@
 "use client";
 
-import { useState } from "react";
 import {
   Select as TremorSelect,
   SelectItem as TremorSelectItem,
+  SelectProps as TremorSelectProps,
 } from "@tremor/react";
 
-const options = [
-  {
-    value: "1",
-    label: "Kilometers",
-  },
-  {
-    value: "2",
-    label: "Meters",
-  },
-  {
-    value: "3",
-    label: "Miles",
-  },
-  {
-    value: "4",
-    label: "Nautical Miles",
-  },
-];
+interface SelectProps extends Omit<TremorSelectProps, "children"> {
+  options: {
+    id: string;
+    name: string;
+  }[];
+}
 
-const Select = () => {
-  const [value, setValue] = useState(options[0]?.value);
-
+const Select = ({ options, ...props }: SelectProps) => {
   return (
-    <TremorSelect
-      value={value}
-      onValueChange={setValue}
-      placeholder="Klient"
-      className="w-72"
-      enableClear={false}
-    >
+    <TremorSelect {...props}>
       {options.map((option) => (
-        <TremorSelectItem key={option.value} value={option.value}>
-          {option.label}
+        <TremorSelectItem key={option.id} value={option.id}>
+          {option.name}
         </TremorSelectItem>
       ))}
     </TremorSelect>
