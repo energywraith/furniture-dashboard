@@ -37,7 +37,7 @@ export const getDailySales = async ({
 }: GetDailySalesProps) => {
   try {
     const response = await fetch(
-      `https://api-test.eltap.com/api/v1/Analytics/daily-order-data?clientId=${client.id}&startDate=${startDate}&endDate=${endDate}`
+      `${process.env.API_URI}/Analytics/daily-order-data?clientId=${client.id}&startDate=${startDate}&endDate=${endDate}`
     );
 
     if (response.ok) {

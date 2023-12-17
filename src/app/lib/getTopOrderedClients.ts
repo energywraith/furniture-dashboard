@@ -7,7 +7,7 @@
 export const getTopOrderedClients = async () => {
   try {
     const response = await fetch(
-      `https://api-test.eltap.com/api/v1/Analytics/top-ordered-clients`
+      `${process.env.API_URI}/Analytics/top-ordered-clients`
     );
 
     if (response.ok) {
