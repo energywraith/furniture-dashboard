@@ -10,7 +10,7 @@ interface DropdownMenuProps {
 const DropdownMenu = ({ options }: DropdownMenuProps) => {
   return (
     <Popup
-      renderContent={(onClosePopup) => (
+      renderContent={({ onClosePopup }) => (
         <div className="mt-3 w-56 rounded-md bg-white focus:outline-none py-1 shadow-xs border border-neutral-700">
           <ul>
             {options.map((option) => (

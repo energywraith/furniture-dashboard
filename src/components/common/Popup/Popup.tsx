@@ -1,13 +1,17 @@
-import { HTMLProps, ReactNode, useRef, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 import { PopupContentWrapper } from "./PopupContentWrapper";
 import { useClickOutside } from "@/hooks/useClickOutside";
 
+export interface PopupRenderProps {
+  isContentVisible: boolean;
+  onClosePopup: () => void;
+}
 interface PopupProps {
-  renderContent: (onClosePopup: () => void) => ReactNode;
+  renderContent: (props: PopupRenderProps) => ReactNode;
+  children: (props: PopupRenderProps) => ReactNode;
   origin?: "center" | "right";
-  isIcon?: boolean;
-  children: (isOpen: boolean) => ReactNode;
   className?: string;
+  isIcon?: boolean;
 }
 
 const Popup = ({
@@ -37,6 +41,11 @@ const Popup = ({
     },
   });
 
+  const renderProps: PopupRenderProps = {
+    isContentVisible,
+    onClosePopup: () => setIsContentVisible(!isContentVisible),
+  };
+
   return (
     <div ref={ref} className={className || "relative"}>
       <button
@@ -49,10 +58,10 @@ const Popup = ({
             : ""
         }
       >
-        {children(isContentVisible)}
+        {children(renderProps)}
       </button>
       <PopupContentWrapper origin={origin} active={isContentVisible}>
-        {renderContent(() => setIsContentVisible(!isContentVisible))}
+        {renderContent(renderProps)}
       </PopupContentWrapper>
     </div>
   );

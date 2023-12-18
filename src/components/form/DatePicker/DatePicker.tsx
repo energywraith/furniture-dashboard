@@ -52,13 +52,15 @@ const DatePicker = ({ disabled, dateRange, onChangeDate }: DatePickerProps) => {
   return (
     <Popup
       className="md:relative"
-      renderContent={(onClosePopup) => (
-        <DatePickerContent
-          selectedDateRange={selectedDateRange}
-          onSelectDate={onSelectDate}
-          onClosePopup={onClosePopup}
-        />
-      )}
+      renderContent={({ isContentVisible, onClosePopup }) =>
+        isContentVisible && (
+          <DatePickerContent
+            selectedDateRange={selectedDateRange}
+            onSelectDate={onSelectDate}
+            onClosePopup={onClosePopup}
+          />
+        )
+      }
       origin="center"
     >
       {() => (
