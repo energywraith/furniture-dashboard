@@ -5,6 +5,9 @@ import { Select } from "@/components/form/Select";
 import { useMemo, useState } from "react";
 import { AreaChartProps } from "@tremor/react";
 import { useDailySales } from "./useDailySales";
+import { DatePicker } from "@/components/form/DatePicker";
+import moment from "moment";
+import { DateRange } from "@/components/form/DatePicker/types";
 
 interface DailySaleChartProps {
   clients: {
@@ -19,6 +22,10 @@ const DailySaleChart = ({
   clients,
 }: DailySaleChartProps) => {
   const [selectedClientId, setSelectedClientId] = useState(clients[0]?.id);
+  const [selectedDateRange, setSelectedDateRange] = useState<DateRange>({
+    startDate: moment().subtract(7, "days"),
+    endDate: moment(),
+  });
 
   const selectedClient = useMemo(
     () => clients.find((client) => client.id === selectedClientId),
@@ -28,6 +35,7 @@ const DailySaleChart = ({
   const { dailySales, isLoading: isInitialDailySalesLoading } = useDailySales({
     initialDailySales,
     selectedClient,
+    selectedDateRange,
   });
 
   return (
@@ -42,7 +50,12 @@ const DailySaleChart = ({
           enableClear={false}
           disabled={isInitialDailySalesLoading}
         />
-        <div className="" />
+        <DatePicker
+          dateRange={selectedDateRange}
+          maxDate={moment()}
+          onChangeDate={setSelectedDateRange}
+          disabled={isInitialDailySalesLoading}
+        />
       </div>
       <Chart
         data={dailySales}

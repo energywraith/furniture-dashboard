@@ -171,7 +171,7 @@ const config: Config = {
             DEFAULT: "#e5e7eb", // gray-200
           },
           content: {
-            subtle: "#9ca3af", // gray-400
+            subtle: "#272D37", // gray-400
             DEFAULT: "#5F6D7E", // gray-50
             emphasis: "#374151", // gray-700
             strong: "#111827", // gray-900
