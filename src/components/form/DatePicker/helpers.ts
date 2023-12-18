@@ -1,11 +1,23 @@
 import moment, { Moment } from "moment";
-import { CALENDAR_MONTHS, CALENDAR_WEEKS, WEEK_DAYS } from "./consts";
+import {
+  CALENDAR_MONTHS,
+  CALENDAR_MONTHS_SHORT,
+  CALENDAR_WEEKS,
+  WEEK_DAYS,
+} from "./consts";
 
-export const getMonthLabel = (date: Moment) =>
-  CALENDAR_MONTHS[date.format("MMMM") as keyof typeof CALENDAR_MONTHS];
+export const getMonthLabel = (date: Moment, short?: boolean) =>
+  short
+    ? CALENDAR_MONTHS_SHORT[
+        date.format("MMMM") as keyof typeof CALENDAR_MONTHS_SHORT
+      ]
+    : CALENDAR_MONTHS[date.format("MMMM") as keyof typeof CALENDAR_MONTHS];
 
 export const getWeekdayLabel = (key: string) =>
   WEEK_DAYS[key as keyof typeof WEEK_DAYS];
+
+export const formatDate = (date: Moment) =>
+  `${date.format("D")} ${getMonthLabel(date, true)} ${date.format("YYYY")}`;
 
 export const isDate = (date: Moment) => {
   return moment(date).isValid();

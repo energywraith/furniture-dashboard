@@ -6,6 +6,7 @@ import { DatePickerContent } from "./DatePickerContent";
 import { DateRange } from "./types";
 import { ChevronIcon } from "@/components/icons";
 import { Popup } from "@/components/common/Popup";
+import { formatDate } from "./helpers";
 
 interface DatePickerProps extends HTMLProps<HTMLButtonElement> {
   dateRange: DateRange;
@@ -79,8 +80,8 @@ const DatePicker = ({
           }`}
         >
           <span>
-            {dateRange.startDate.format("D MMM YYYY")} -{" "}
-            {dateRange.endDate?.format("D MMM YYYY")}
+            {formatDate(dateRange.startDate)} -{" "}
+            {dateRange.endDate && formatDate(dateRange.endDate)}
           </span>
           <ChevronIcon className="w-4 h-4" />
         </div>
