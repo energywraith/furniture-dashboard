@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { HTMLProps, useMemo } from "react";
 import { Moment } from "moment";
 import { Day } from "./Day";
 import { WEEK_DAYS } from "./consts";
@@ -11,7 +11,7 @@ import {
 } from "./helpers";
 import { DateRange } from "./types";
 
-interface MonthCalendarProps {
+interface MonthCalendarProps extends HTMLProps<HTMLDivElement> {
   monthPeriod: Moment;
   selectedDateRange: DateRange;
   onSelectDate: (date: Moment) => void;
@@ -21,11 +21,12 @@ const MonthCalendar = ({
   monthPeriod,
   selectedDateRange,
   onSelectDate,
+  className,
 }: MonthCalendarProps) => {
   const calendar = useMemo(() => getCalendar(monthPeriod), [monthPeriod]);
 
   return (
-    <div>
+    <div className={className}>
       <div className="bg-neutral-500 rounded-lg py-2.5 flex-grow text-center text-body-m font-semibold">
         {getMonthLabel(monthPeriod)} - {monthPeriod.format("Y")}
       </div>
