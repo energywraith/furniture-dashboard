@@ -9,14 +9,15 @@ import { ClientsTable } from "@/components/dashboard/ClientsTable";
 import { ProductsTable } from "@/components/dashboard/ProductsTable";
 import { getClients } from "./lib/getClients";
 import { DailySaleChart } from "@/components/dashboard/DailySaleChart";
+import moment from "moment";
 
 async function getData() {
   const clients = await getClients();
 
   const dailySales = await getDailySales({
     client: clients[0],
-    startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toUTCString(),
-    endDate: new Date(Date.now()).toUTCString(),
+    startDate: moment.utc().subtract(7, "days").format(),
+    endDate: moment.utc().format(),
   });
 
   const topOrderedProducts = await getTopOrderedProducts();

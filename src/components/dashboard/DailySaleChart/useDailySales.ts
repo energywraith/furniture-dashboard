@@ -1,6 +1,8 @@
 import { AreaChartProps } from "@tremor/react";
 import { useEffect, useState } from "react";
 import { getDailySales } from "@/app/lib/getDailySales";
+import { DateRange } from "@/components/form/DatePicker/types";
+import moment from "moment";
 
 interface useDailySalesProps {
   initialDailySales: AreaChartProps["data"];
@@ -8,11 +10,13 @@ interface useDailySalesProps {
     id: string;
     name: string;
   };
+  selectedDateRange: DateRange;
 }
 
 const useDailySales = ({
   initialDailySales,
   selectedClient,
+  selectedDateRange,
 }: useDailySalesProps) => {
   const [dailySales, setDailySales] = useState(initialDailySales);
 
@@ -30,7 +34,11 @@ const useDailySales = ({
     }
 
     const fetchDailySalesForClient = async () => {
-      if (!selectedClient) {
+      if (
+        !selectedClient ||
+        !selectedDateRange.startDate ||
+        !selectedDateRange.endDate
+      ) {
         setDailySales([]);
         return;
       }
@@ -39,8 +47,8 @@ const useDailySales = ({
 
       const dailySales = await getDailySales({
         client: selectedClient,
-        startDate: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toUTCString(),
-        endDate: new Date(Date.now()).toUTCString(),
+        startDate: moment.utc(selectedDateRange.startDate).format(),
+        endDate: moment.utc(selectedDateRange.endDate).format(),
       });
 
       setDailySales(dailySales);
@@ -48,7 +56,7 @@ const useDailySales = ({
     };
 
     fetchDailySalesForClient();
-  }, [selectedClient]);
+  }, [selectedClient, selectedDateRange]);
 
   return { isLoading, dailySales };
 };
