@@ -2,13 +2,14 @@ import { HTMLProps, useMemo, useState } from "react";
 import { ChevronIcon } from "@/components/icons";
 import { MonthCalendar } from "./MonthCalendar";
 
-import { getNextMonth, getPreviousMonth } from "./helpers";
-import { Moment } from "moment";
+import { getNextMonth, getPreviousMonth, isSameMonth } from "./helpers";
+import { Moment, max } from "moment";
 import { DateRange } from "./types";
 import moment from "moment";
 
 interface DatePickerContentProps extends HTMLProps<HTMLDivElement> {
   selectedDateRange: DateRange;
+  maxDate?: Moment;
   onSelectDate: (date: Moment, onClosePopup: () => void) => void;
   onClosePopup: () => void;
 }
@@ -16,6 +17,7 @@ interface DatePickerContentProps extends HTMLProps<HTMLDivElement> {
 const DatePickerContent = ({
   className,
   selectedDateRange,
+  maxDate,
   onSelectDate,
   onClosePopup,
 }: DatePickerContentProps) => {
@@ -48,19 +50,22 @@ const DatePickerContent = ({
         <MonthCalendar
           monthPeriod={previousMonth}
           selectedDateRange={selectedDateRange}
+          maxDate={maxDate}
           onSelectDate={handleSelectDate}
           className="hidden md:block"
         />
         <MonthCalendar
           monthPeriod={selectedMonth}
           selectedDateRange={selectedDateRange}
+          maxDate={maxDate}
           onSelectDate={handleSelectDate}
         />
         <button
-          className="border border-neutral-700 rounded p-2.5 shadow-xs h-fit"
+          className="border border-neutral-700 rounded p-2.5 shadow-xs h-fit disabled:bg-neutral-600 disabled:text-neutral-800"
           onClick={() =>
             setSelectedMonth((selectedMonth) => getNextMonth(selectedMonth))
           }
+          disabled={isSameMonth(selectedMonth, maxDate)}
         >
           <ChevronIcon className="w-4 h-4 -rotate-90" />
         </button>

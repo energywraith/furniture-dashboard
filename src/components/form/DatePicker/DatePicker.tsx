@@ -9,10 +9,16 @@ import { Popup } from "@/components/common/Popup";
 
 interface DatePickerProps extends HTMLProps<HTMLButtonElement> {
   dateRange: DateRange;
+  maxDate?: Moment;
   onChangeDate: (date: DateRange) => void;
 }
 
-const DatePicker = ({ disabled, dateRange, onChangeDate }: DatePickerProps) => {
+const DatePicker = ({
+  disabled,
+  dateRange,
+  maxDate,
+  onChangeDate,
+}: DatePickerProps) => {
   const [selectedDateRange, setSelectedDateRange] =
     useState<DateRange>(dateRange);
 
@@ -55,6 +61,7 @@ const DatePicker = ({ disabled, dateRange, onChangeDate }: DatePickerProps) => {
       renderContent={({ isContentVisible, onClosePopup }) =>
         isContentVisible && (
           <DatePickerContent
+            maxDate={maxDate}
             selectedDateRange={selectedDateRange}
             onSelectDate={onSelectDate}
             onClosePopup={onClosePopup}

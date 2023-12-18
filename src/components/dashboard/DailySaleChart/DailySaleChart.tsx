@@ -52,6 +52,7 @@ const DailySaleChart = ({
         />
         <DatePicker
           dateRange={selectedDateRange}
+          maxDate={moment()}
           onChangeDate={setSelectedDateRange}
           disabled={isInitialDailySalesLoading}
         />

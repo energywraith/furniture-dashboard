@@ -14,12 +14,14 @@ import { DateRange } from "./types";
 interface MonthCalendarProps extends HTMLProps<HTMLDivElement> {
   monthPeriod: Moment;
   selectedDateRange: DateRange;
+  maxDate?: Moment;
   onSelectDate: (date: Moment) => void;
 }
 
 const MonthCalendar = ({
   monthPeriod,
   selectedDateRange,
+  maxDate,
   onSelectDate,
   className,
 }: MonthCalendarProps) => {
@@ -48,11 +50,12 @@ const MonthCalendar = ({
             selectedDateRange.startDate,
             selectedDateRange.endDate
           );
+          const isBeforeMaxDate = maxDate ? date.isBefore(maxDate) : true;
 
           return (
             <Day
               key={date.format()}
-              disabled={!isDateSameMonth}
+              disabled={!isDateSameMonth || !isBeforeMaxDate}
               selected={isDateSameMonth && !!isDateSameDay}
               isInRange={!isDateSameDay && isInRange}
               onClick={() => {
