@@ -74,8 +74,8 @@ const DatePicker = ({
         <div
           className={`w-72 border border-neutral-700 rounded-md shadow-xs flex justify-between items-center px-4 py-2 text-body-m gap-x-3 ${
             disabled
-              ? "bg-neutral-600 text-neutral-800 focus:ring-2"
-              : "text-gray-700 hover:bg-info-50 focus:bg-base-white"
+              ? "bg-neutral-600 text-neutral-800"
+              : "text-gray-700 hover:bg-info-50"
           }`}
         >
           <span>

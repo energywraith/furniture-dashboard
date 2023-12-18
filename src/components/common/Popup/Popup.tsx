@@ -55,7 +55,7 @@ const Popup = ({
             ? `rounded-full p-2 ${
                 !isContentVisible ? "hover:bg-info-100 hover:text-info-950" : ""
               }`
-            : ""
+            : "rounded-md active:ring-1"
         }
       >
         {children(renderProps)}
