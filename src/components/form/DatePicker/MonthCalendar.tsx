@@ -6,18 +6,19 @@ import {
   isSameDay,
   isSameMonth,
 } from "./helpers";
+import { DateRange } from "./types";
 import { useCalendar } from "./useCalendar";
 import { Moment } from "moment";
 
 interface MonthCalendarProps {
   monthPeriod: Moment;
-  selectedDate: Moment;
+  selectedDateRange: DateRange;
   onSelectDate: (date: Moment) => void;
 }
 
 const MonthCalendar = ({
   monthPeriod,
-  selectedDate,
+  selectedDateRange,
   onSelectDate,
 }: MonthCalendarProps) => {
   const calendar = useCalendar(monthPeriod);
@@ -37,13 +38,21 @@ const MonthCalendar = ({
         })}
         {calendar.map((date) => {
           const isDateSameMonth = isSameMonth(date, monthPeriod);
-          const isDateSameDay = isSameDay(date, selectedDate);
+          const isDateSameDay =
+            isSameDay(date, selectedDateRange.startDate) ||
+            (selectedDateRange.endDate &&
+              isSameDay(date, selectedDateRange.endDate));
+          const isInRange = date.isBetween(
+            selectedDateRange.startDate,
+            selectedDateRange.endDate
+          );
 
           return (
             <Day
               key={date.format()}
               disabled={!isDateSameMonth}
-              selected={isDateSameMonth && isDateSameDay}
+              selected={isDateSameMonth && !!isDateSameDay}
+              isInRange={!isDateSameDay && isInRange}
               onClick={() => {
                 onSelectDate(date);
               }}

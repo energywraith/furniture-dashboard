@@ -4,11 +4,22 @@ import { ChevronIcon } from "@/components/icons";
 import { MonthCalendar } from "./MonthCalendar";
 
 import { getNextMonth, getPreviousMonth } from "./helpers";
-import { useMemo, useState } from "react";
-import moment from "moment";
+import { useEffect, useMemo, useState } from "react";
+import moment, { Moment } from "moment";
+import { DateRange } from "./types";
 
-const DatePicker = () => {
-  const [selectedDate, setSelectedDate] = useState(moment());
+interface DatePickerProps {
+  dateRange: DateRange;
+  onChangeDate: (date: DateRange) => void;
+}
+
+const DatePicker = ({
+  dateRange,
+  onChangeDate = () => {},
+}: DatePickerProps) => {
+  const [selectedDateRange, setSelectedDateRange] =
+    useState<DateRange>(dateRange);
+
   const [selectedMonth, setSelectedMonth] = useState(moment());
 
   const previousMonth = useMemo(
@@ -16,7 +27,36 @@ const DatePicker = () => {
     [selectedMonth]
   );
 
-  console.log(selectedDate);
+  const onSelectDate = (date: Moment) => {
+    setSelectedDateRange((currentDateRange) => {
+      if (currentDateRange.endDate === null) {
+        if (currentDateRange.startDate.isAfter(date)) {
+          return {
+            startDate: date,
+            endDate: currentDateRange.startDate,
+          };
+        }
+
+        return {
+          ...currentDateRange,
+          endDate: date,
+        };
+      }
+
+      return {
+        startDate: date,
+        endDate: null,
+      };
+    });
+  };
+
+  useEffect(() => {
+    if (!selectedDateRange.endDate) {
+      return;
+    }
+
+    onChangeDate(selectedDateRange);
+  }, [selectedDateRange]);
 
   return (
     <div className="shadow-xs border border-neutral-700 flex flex-col p-6 text-gray-700">
@@ -31,13 +71,13 @@ const DatePicker = () => {
         </button>
         <MonthCalendar
           monthPeriod={previousMonth}
-          selectedDate={selectedDate}
-          onSelectDate={setSelectedDate}
+          selectedDateRange={selectedDateRange}
+          onSelectDate={onSelectDate}
         />
         <MonthCalendar
           monthPeriod={selectedMonth}
-          selectedDate={selectedDate}
-          onSelectDate={setSelectedDate}
+          selectedDateRange={selectedDateRange}
+          onSelectDate={onSelectDate}
         />
         <button
           className="border border-neutral-700 rounded p-2.5 shadow-xs h-fit"
