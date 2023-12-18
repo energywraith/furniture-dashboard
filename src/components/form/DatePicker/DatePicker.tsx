@@ -70,6 +70,7 @@ const DatePicker = ({
         )
       }
       origin="center"
+      disabled={disabled}
     >
       {() => (
         <div

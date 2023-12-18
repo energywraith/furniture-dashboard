@@ -1,5 +1,4 @@
 import { CloseIcon, MoreIcon } from "@/components/icons";
-import { useState } from "react";
 import { DropdownMenuOption } from "./DropdownMenuOption";
 import { Popup } from "@/components/common/Popup";
 
