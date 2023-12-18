@@ -1,14 +1,15 @@
+import { useMemo } from "react";
+import { Moment } from "moment";
 import { Day } from "./Day";
 import { WEEK_DAYS } from "./consts";
 import {
+  getCalendar,
   getMonthLabel,
   getWeekdayLabel,
   isSameDay,
   isSameMonth,
 } from "./helpers";
 import { DateRange } from "./types";
-import { useCalendar } from "./useCalendar";
-import { Moment } from "moment";
 
 interface MonthCalendarProps {
   monthPeriod: Moment;
@@ -21,7 +22,7 @@ const MonthCalendar = ({
   selectedDateRange,
   onSelectDate,
 }: MonthCalendarProps) => {
-  const calendar = useCalendar(monthPeriod);
+  const calendar = useMemo(() => getCalendar(monthPeriod), [monthPeriod]);
 
   return (
     <div>
