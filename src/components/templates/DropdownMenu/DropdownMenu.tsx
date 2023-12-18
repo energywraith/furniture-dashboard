@@ -29,7 +29,7 @@ const DropdownMenu = ({ options }: DropdownMenuProps) => {
       origin="right"
       isIcon
     >
-      {(isContentVisible) => {
+      {({ isContentVisible }) => {
         const MenuIcon = isContentVisible ? CloseIcon : MoreIcon;
         return <MenuIcon className="w-6 h-6" />;
       }}
