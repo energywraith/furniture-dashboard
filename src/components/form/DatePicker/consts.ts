@@ -1,6 +1,3 @@
-export const THIS_YEAR = +new Date().getFullYear();
-export const THIS_MONTH = +new Date().getMonth() + 1;
-
 export const CALENDAR_MONTHS = {
   January: "Styczeń",
   February: "Luty",
@@ -17,13 +14,13 @@ export const CALENDAR_MONTHS = {
 };
 
 export const WEEK_DAYS = {
-  Sunday: "Niedz.",
   Monday: "Pon.",
   Tuesday: "Wt.",
   Wednesday: "Śr.",
   Thursday: "Czw.",
   Friday: "Pt.",
   Saturday: "Sob.",
+  Sunday: "Niedz.",
 };
 
 export const CALENDAR_WEEKS = 6;
