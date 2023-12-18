@@ -12,6 +12,7 @@ interface PopupProps {
   origin?: "center" | "right";
   className?: string;
   isIcon?: boolean;
+  disabled?: boolean;
 }
 
 const Popup = ({
@@ -20,6 +21,7 @@ const Popup = ({
   origin,
   isIcon,
   className,
+  disabled,
 }: PopupProps) => {
   const ref = useRef(null);
   const [isContentVisible, setIsContentVisible] = useState(false);
@@ -49,6 +51,7 @@ const Popup = ({
   return (
     <div ref={ref} className={className || "relative"}>
       <button
+        disabled={disabled}
         onClick={toggleMenu}
         className={
           isIcon
