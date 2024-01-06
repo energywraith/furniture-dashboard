@@ -5,7 +5,7 @@
 
 export const getClients = async () => {
   try {
-    const response = await fetch(`https://api-test.eltap.com/api/v1/Clients`);
+    const response = await fetch(`${process.env.API_URI}/Clients`);
 
     if (response.ok) {
       const responseJSON = await response.json();

@@ -9,7 +9,7 @@
 export const getTopOrderedProducts = async () => {
   try {
     const response = await fetch(
-      `https://api-test.eltap.com/api/v1/Analytics/top-ordered-products`
+      `${process.env.API_URI}/Analytics/top-ordered-products`
     );
 
     if (response.ok) {
